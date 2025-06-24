@@ -23,4 +23,14 @@ class Fraccion(
     override fun toString(): String {
        return "${_numerador} / ${_denominador}"              
     }
+    operator fun plus(otro: Fraccion): Fraccion {
+        return Fraccion(
+           
+        )
+    }
+
+    operator fun plus(otro: Fraccion): Fraccion {
+        
+        return Fraccion(_numerador = numerador, _denominador = denominador)
+    }
 }

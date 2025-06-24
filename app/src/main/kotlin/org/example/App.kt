@@ -6,4 +6,7 @@ package org.example
 fun main() {
     val f1 = Fraccion(3, 4)
     f1.mostrar()
+    val f2 = Fraccion(1, 4)
+    f2.mostrar()
+   
 }
