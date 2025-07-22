@@ -10,6 +10,10 @@ fun main() {
     f2.mostrar()
     var f3 = f1 + f2
     var f4 = f1 - f2
+    var f5 = f1 * f2
+    var f6 = f1 / f2
     println("Suma: $f1 + $f2 = ${f3}")
     println("Resta: $f1 - $f2 = ${f4}")
+    println("Multiplicacion: $f1 * $f2 = ${f5}")
+    println("Division: $f1 / $f2 = ${f6}")
 }

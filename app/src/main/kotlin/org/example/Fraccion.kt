@@ -38,6 +38,23 @@ class Fraccion(
         resultado.simplificar()  
         return resultado 
         }
+    operator fun times(otro: Fraccion): Fraccion {
+        val mulnumerador = this.numerador * otro.numerador
+        val muldenominador = this.denominador * otro.denominador
+        val resultado = Fraccion(mulnumerador, muldenominador)
+        resultado.simplificar()  
+        return resultado 
+        }
+    operator fun div(otro: Fraccion): Fraccion {
+         if (otro.numerador == 0) {
+        throw IllegalArgumentException("No se puede dividir por una fracción con numerador cero")
+    }
+        val divnumerador = this.numerador * otro.denominador
+        val divdenominador = this.denominador * otro.numerador
+        val resultado = Fraccion(divnumerador, divdenominador)
+        resultado.simplificar()  
+        return resultado 
+    } 
     private fun simplificar() {
         val mcd = calcularMCD(kotlin.math.abs(numerador), kotlin.math.abs(denominador))
         if (mcd > 1) {
