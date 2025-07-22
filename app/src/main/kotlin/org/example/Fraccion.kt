@@ -25,6 +25,8 @@ class Fraccion(
     }
 
     operator fun plus(otro: Fraccion): Fraccion {
+         if (otro.numerador == 0) {
+        throw IllegalArgumentException("No se puede dividir por una fracción con numerador cero")}
         val sumnumerador = this.numerador * otro.denominador + this.denominador * otro.numerador
         val sumdenominador = this.denominador * otro.denominador
         val resultado = Fraccion(sumnumerador, sumdenominador)
@@ -32,6 +34,8 @@ class Fraccion(
         return resultado 
     } 
     operator fun minus(otro: Fraccion): Fraccion {
+         if (otro.numerador == 0) {
+        throw IllegalArgumentException("No se puede dividir por una fracción con numerador cero")}
         val resnumerador = this.numerador * otro.denominador - this.denominador * otro.numerador
         val resdenominador = this.denominador * otro.denominador
         val resultado = Fraccion(resnumerador, resdenominador)
@@ -39,6 +43,8 @@ class Fraccion(
         return resultado 
         }
     operator fun times(otro: Fraccion): Fraccion {
+         if (otro.numerador == 0) {
+        throw IllegalArgumentException("No se puede dividir por una fracción con numerador cero")}
         val mulnumerador = this.numerador * otro.numerador
         val muldenominador = this.denominador * otro.denominador
         val resultado = Fraccion(mulnumerador, muldenominador)
