@@ -27,13 +27,30 @@ class Fraccion(
     operator fun plus(otro: Fraccion): Fraccion {
         val sumnumerador = this.numerador * otro.denominador + this.denominador * otro.numerador
         val sumdenominador = this.denominador * otro.denominador
-        return Fraccion(sumnumerador, sumdenominador)   
+        val resultado = Fraccion(sumnumerador, sumdenominador)
+        resultado.simplificar()  
+        return resultado 
     } 
     operator fun minus(otro: Fraccion): Fraccion {
         val resnumerador = this.numerador * otro.denominador - this.denominador * otro.numerador
         val resdenominador = this.denominador * otro.denominador
-        return Fraccion(resnumerador, resdenominador)
-    
+        val resultado = Fraccion(resnumerador, resdenominador)
+        resultado.simplificar()  
+        return resultado 
+        }
+    private fun simplificar() {
+        val mcd = calcularMCD(kotlin.math.abs(numerador), kotlin.math.abs(denominador))
+        if (mcd > 1) {
+            _numerador /= mcd
+            _denominador /= mcd
+        }
+
+        if (_denominador < 0) {
+            _numerador = -_numerador
+            _denominador = -_denominador
+        }
+    }    private fun calcularMCD(a: Int, b: Int): Int {
+        return if (b == 0) a else calcularMCD(b, a % b)
 
 }
 }
