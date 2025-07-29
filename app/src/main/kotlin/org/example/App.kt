@@ -15,5 +15,5 @@ fun main() {
     println("Suma: $f1 + $f2 = ${f3}")
     println("Resta: $f1 - $f2 = ${f4}")
     println("Multiplicacion: $f1 * $f2 = ${f5}")
-    println("Division: $f1 / $f2 = ${f6}")
+    println(f1.compareTo(f2))
 }

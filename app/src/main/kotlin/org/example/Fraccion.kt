@@ -76,4 +76,21 @@ class Fraccion(
         return if (b == 0) a else calcularMCD(b, a % b)
 
 }
+    operator fun compareTo(otro: Fraccion): Int {
+        return (this.numerador * otro.denominador).compareTo(otro.numerador * this.denominador)
+}
+    override fun equals(other: Any?): Boolean {
+        
+        if (this === other){ // verifica si ocupa la misma posición de memoria
+            return ture
+        }
+
+        if (other !is Fraccion) { // si other no es un objeto de la clase que retorne false
+            return false
+        }
+        //si no se hace lo anterior no se puede utilizar other
+
+        return this.numerador * other.denominador == other.numerador * this.denominador
+        }
+    }
 }
