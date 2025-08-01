@@ -134,12 +134,14 @@ fun realizarResta(scanner: Scanner) {
         println("Error: ${e.message}")
         scanner.nextLine() 
     }}
-    fun crearDesdeDecimal(scanner: Scanner) {
+fun crearDesdeDecimal(scanner: Scanner) {
     try {
-        val decimal = leerFraccion(scanner, "Ingrese el decimal:")
+        print("Ingrese un número decimal: ")
+        val decimal = scanner.nextDouble()
         val fdecimal = Fraccion.desdeDecimal(decimal)
         println("Decimal $decimal como fracción: $fdecimal")
     } catch (e: Exception) {
         println("Error: ${e.message}")
         scanner.nextLine() 
-    }}
+    }
+}
