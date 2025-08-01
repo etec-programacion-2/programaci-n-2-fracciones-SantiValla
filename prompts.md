@@ -1,7 +1,7 @@
 
-
-ChatGPT
-Tú dijiste:
+Herramienta usada para todos los prompts: Chat GPT
+Fecha: 22/7/25
+Prompt:
 tengo este codigo de kotlin, esto es App.kt: package org.example
 
 fun main() {
@@ -67,7 +67,7 @@ class Fraccion(
 }
 }
 quiero mostrar en consola la simplificacion del resultado de la suma y resta de las fracciones, como lo hago?
-ChatGPT Plus
+Respuesta:
 Para mostrar la simplificación del resultado de la suma y resta de fracciones en consola, necesitas hacer dos cosas:
 
 ✅ 1. Llamar al método simplificar() desde las operaciones plus y minus
@@ -100,7 +100,8 @@ Suma: 3 / 4 + 1 / 4 = 1 / 1
 Resta: 3 / 4 - 1 / 4 = 1 / 2
 ¿Quieres que el método mostrar() también imprima la fracción simplificada automáticamente? Si es así, puedo ayudarte a ajustar eso también.
 
-Tú dijiste:
+Fecha: 22/7/25
+Prompt:
 la consigna que tengo que seguir es la siguiente, quiero verificar que lo que hice cumple con todas las consignas: 1. **Operador suma:**
    - Crear el operador operator fun plus(otra: Fraccion): Fraccion
    - Implementar la fórmula: (a/b) + (c/d) = (a*d + b*c)/(b*d)
@@ -117,7 +118,7 @@ la consigna que tengo que seguir es la siguiente, quiero verificar que lo que hi
    - Verificar que las fracciones a operar sean válidas (denominador ≠ 0)
    - Manejar casos de fracciones negativas
 5. **Push al repositorio** con el mensaje "Etapa 2: Implementación de operadores suma y resta de fracciones".
-ChatGPT Plus
+Respuesta:
 Gracias por compartir el enunciado. A continuación te hago una verificación punto por punto respecto a lo que hiciste en tu código Kotlin:
 
 ✅ 1. Operador suma
@@ -195,7 +196,8 @@ Bien hecho 🎉
 
 ¿Querés que te ayude a testear casos particulares o agregar tests automáticos?
 
-Tú dijiste:
+Fecha: 22/7/25:
+Prompt:
 la siguiente consigna pide lo siguiente: 1. **Operador multiplicación:**
    - Crear el operador operator fun times(otra: Fraccion): Fraccion
    - Implementar la fórmula: (a/b) * (c/d) = (a*c)/(b*d)
@@ -224,7 +226,7 @@ yo ya agregué lo siguiente:     operator fun times(otro: Fraccion): Fraccion {
         resultado.simplificar()  
         return resultado 
 pero tengo que agregar la excepcion para cuando numerador de la segunda fracción sea cero, sé que tendría que comenzar con if(otro.numerador == 0) pero no se como hacer la excepcion
-ChatGPT Plus
+Respuesta:
 Perfecto, vas muy bien. Ya implementaste correctamente la lógica de multiplicación y división con simplificación. Ahora te falta solo una validación importante en la división: lanzar una excepción si el numerador de la segunda fracción es 0, ya que eso equivale a división por cero.
 
 ✅ ¿Por qué?
@@ -291,7 +293,8 @@ throw IllegalArgumentException(...) → lanza una excepción clara si se intenta
 
 ¿Querés que te ayude a agregar una pequeña función testMultiplicacionYDivision() en el main() para probar casos válidos y uno con error?
 
-Tú dijiste:
+Fecha: 29/7/25
+Prompt: 
 el siguiente punto pide lo siguiente: Etapa 4: Validaciones
 **Objetivo:** Implementar validaciones adicionales y métodos de utilidad para completar la funcionalidad de la clase.
 
@@ -303,16 +306,7 @@ el siguiente punto pide lo siguiente: Etapa 4: Validaciones
 2. **Operadores de comparación:**
    - Crear el operador operator fun compareTo(otra: Fraccion): Int para comparar fracciones
    - Implementar operator fun equals(other: Any?): Boolean para verificar igualdad
-3. **Métodos de utilidad:**
-   - Crear un método esMayor(otra: Fraccion): Boolean que determine si una fracción es mayor que otra
-   - Crear un método esMenor(otra: Fraccion): Boolean que determine si una fracción es menor que otra
-4. **Método para convertir a decimal:**
-   - Crear un método aDecimal(): Double que convierta la fracción a su representación decimal
-5. **Método para crear fracción desde decimal:**
-   - Crear un método companion object fun desdeDecimal(decimal: Double): Fraccion que convierta un decimal a fracción
-6. **Documentación:**
-   - Documentar los parámetros y valores de retorno
-7. **Push al repositorio** con el mensaje "Etapa 4: Validaciones y métodos de utilidad completados".
+
 tengo escrito lo siguiente, pero no funciona: 
 operator fun compareTo(otro: Fraccion): Int {
         return (this.numerador * otro.denominador).compareTo(otro.numerador * this.denominador)
@@ -324,7 +318,7 @@ operator fun compareTo(otro: Fraccion): Int {
             return false
         }
     }
-ChatGPT Plus
+Respuesta:
 Gracias por compartir tu código. Estás muy cerca, pero tu implementación de equals tiene algunos errores de sintaxis y lógica. Vamos paso por paso para asegurarnos de que cumplís con todo lo de Etapa 4.
 
 ✅ 1. Validaciones de entrada
@@ -370,73 +364,14 @@ override fun equals(other: Any?): Boolean {
 
     return this.numerador * other.denominador == other.numerador * this.denominador
 }
-✅ 3. Métodos de utilidad: esMayor, esMenor
-Podés hacerlos usando compareTo:
 
-fun esMayor(otra: Fraccion): Boolean {
-    return this > otra
-}
-
-fun esMenor(otra: Fraccion): Boolean {
-    return this < otra
-}
-Nota: Para que esto funcione, necesitás que tu clase implemente Comparable<Fraccion>.
-
-class Fraccion(...) : Comparable<Fraccion> {
-    ...
-}
-✅ 4. Método aDecimal(): Double
-Muy simple:
-
-fun aDecimal(): Double {
-    return numerador.toDouble() / denominador
-}
-✅ 5. Método desdeDecimal() en companion object
-Este es un poco más complejo. Una forma básica es:
-
-companion object {
-    fun desdeDecimal(decimal: Double): Fraccion {
-        val precision = 1_000_000
-        val numerador = (decimal * precision).toInt()
-        val denominador = precision
-        val fraccion = Fraccion(numerador, denominador)
-        fraccion.simplificar()
-        return fraccion
-    }
-}
-Esto convierte, por ejemplo, 0.75 en 750000 / 1000000, y luego lo simplifica a 3 / 4.
-
-✅ 6. Documentación (comentarios simples en cada método)
-Ejemplo:
-
-/**
- * Convierte la fracción a decimal.
- * @return Representación decimal como Double
- */
-fun aDecimal(): Double { ... }
-
-/**
- * Compara esta fracción con otra.
- * @param otra La fracción a comparar
- * @return Int: -1 si menor, 0 si igual, 1 si mayor
- */
-override fun compareTo(otra: Fraccion): Int { ... }
-Esto ya cumple con la documentación básica requerida.
-
-✅ 7. Push
-Una vez listo todo, usás:
-
-git commit -m "Etapa 4: Validaciones y métodos de utilidad completados"
-✅ CONCLUSIÓN
-Corregí equals() y agregá la interfaz Comparable<Fraccion> si querés usar >, <, == naturalmente.
-¿Querés que te muestre el código completo final de la clase Fraccion actualizado con todo esto?
-
-Tú dijiste:
-que está mal con mi interpretacion de lo que habia que hacer con aDecimal?
+Fecha: 1/8/25
+Prompt:
+tengo que crear una funcion llamada aDecimal que exprese en decimal una fraccion, que está mal con mi interpretacion de lo que habia que hacer con aDecimal?
         fun aDecimal(): Double{
             val decimal = numerador / denominador
             return decimal
-ChatGPT Plus
+Respuesta:
 Buena pregunta. El problema con tu implementación de aDecimal() es que estás usando división entera entre dos Int, lo cual descarta la parte decimal del resultado.
 
 🔍 Tu versión:
@@ -463,10 +398,11 @@ val f = Fraccion(1, 4)
 println(f.aDecimal())  // Salida: 0.25 ✅
 ¿Querés que te ayude a escribir tests simples en el main() para verificar aDecimal() y desdeDecimal()?
 
-Tú dijiste:
+Fecha: 1/8/25
+Prompt:
 ayudame con el siguiente punto: 5. **Método para crear fracción desde decimal:**
    - Crear un método companion object fun desdeDecimal(decimal: Double): Fraccion que convierta un decimal a fracción
-ChatGPT Plus
+Repsuesta:
 Perfecto, vamos a implementar el método desdeDecimal dentro de un companion object para convertir un número decimal (de tipo Double) a una fracción simplificada (Fraccion).
 
 🧠 ¿Cómo funciona?
@@ -513,9 +449,10 @@ Si querés una versión más precisa (que detecta automáticamente cuántos deci
 
 ¿Querés que mejoremos eso después con precisión automática o preferís dejarlo así por ahora?
 
-Tú dijiste:
+Fecha: 1/8/25
+Prompt:
 donde creo el objeto, en app.kt, en fraccion.kt, dentro de la clase fraccion en el segundo caso o afuera?
-ChatGPT Plus
+Respuesta:
 Muy buena pregunta. La definición del **companion object** debe ir dentro de la clase Fraccion en el archivo Fraccion.kt, porque justamente ese objeto va a contener métodos "de clase" (estáticos, por así decirlo), como desdeDecimal().
 
 ✅ Ubicación correcta:
@@ -557,8 +494,8 @@ fun main() {
     println("Fracción de $decimal es $fraccion")  // → 3 / 4
 }
 ¿Querés que revise todo tu Fraccion.kt para mostrarte cómo quedaría con todas las etapas aplicadas?
-
-Tú dijiste:
+Fecha: 1/8/25
+Prompt:
 el siguiente punto exige lo siguiente: ### Etapa 5: Interfaz de Línea de Comandos (CLI)
 **Objetivo:** Desarrollar una interfaz de línea de comandos simple para probar todas las funcionalidades de la clase Fraccion.
 
@@ -669,7 +606,7 @@ kotlin
        
        scanner.close()
    }
-ChatGPT Plus
+Respuesta:
 Memoria guardada actualizada
 Gracias por detallar el problema. Si al implementar el menú y las funciones el programa “deja de funcionar”, lo más probable es que haya:
 
@@ -790,9 +727,10 @@ No creaste funciones como realizarMultiplicacion() o realizarDivision() y el whe
 Solución: agregá versiones básicas de esas funciones aunque sea con un println("Función no implementada aún") temporalmente.
 
 ✅ ¿Querés que te pase una versión completa y funcional de CalculadoraFracciones.kt con todas las funciones básicas?
-Tú dijiste:
+Fecha: 1/8/25
+Prompt: 
 si f1 y f2 ya estan definidas en la funcion de ejemplos, tira error o no afecta a las variables de mismo nombre pero en otras funciones?
-ChatGPT Plus
+Respuesta:
 Excelente pregunta.
 
 🔑 Respuesta corta: No afecta. No hay error.
@@ -839,7 +777,8 @@ Es una práctica común y no genera errores mientras respetes el alcance local.
 
 ¿Querés que revise tu función mostrarEjemplos() o querés ayuda para completar alguna otra operación del menú?
 
-Tú dijiste:
+Fecha: 1/8/25 (luego de que termine la clase, desde el celular y sin poder usar visual studio code para comprobar que funcione)
+Prompt:
 agregué esto a CalcularFracciones.kt pero en crear desdedecimal me marca un error en la linea de Fraccion.desdedecimal(decimal), lo cual es raro ya que en mostar ejemplos se encuentra exactamente igual pero el error no aparece
 /*
  * This source file was generated by the Gradle 'init' task
@@ -986,7 +925,7 @@ fun realizarResta(scanner: Scanner) {
         println("Error: ${e.message}")
         scanner.nextLine() 
     }} 
-ChatGPT Plus
+Respuesta:
 El error está en esta línea dentro de tu función crearDesdeDecimal():
 
 val decimal = leerFraccion(scanner, "Ingrese el decimal:")
