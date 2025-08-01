@@ -82,7 +82,7 @@ class Fraccion(
     override fun equals(other: Any?): Boolean {
         
         if (this === other){ // verifica si ocupa la misma posición de memoria
-            return ture
+            return true
         }
 
         if (other !is Fraccion) { // si other no es un objeto de la clase que retorne false
@@ -92,5 +92,40 @@ class Fraccion(
 
         return this.numerador * other.denominador == other.numerador * this.denominador
         }
+        fun esMayor(other: Fraccion): Boolean {
+            if (this > other){ 
+            return true
+        }
+
+        if (other !is Fraccion) { 
+            return false
+        }
+        
+
+        return this.numerador * other.denominador > other.numerador * this.denominador
+        }
+        fun esMenor(other: Fraccion): Boolean {
+            if (this < other){ 
+            return true
+        }
+
+        if (other !is Fraccion) { 
+            return false
+        }
+        
+
+        return this.numerador * other.denominador < other.numerador * this.denominador
+        }
+        fun aDecimal(): Double {
+    return numerador.toDouble() / denominador
+    }
+    companion object { fun desdeDecimal(decimal: Double): Fraccion {
+        val precision = 1_000_000 
+        val numerador = (decimal * precision).toInt()
+        val denominador = precision
+        val fraccion = Fraccion(numerador, denominador)
+        fraccion.simplificar()
+        return fraccion
     }
 }
+    }
